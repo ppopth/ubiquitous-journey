@@ -8,7 +8,7 @@ go run ./cmd/gen-topology/main.go
 ```
 
 The JSON format of the generated topology is as follows.
-```
+```go
 type Node struct {
 	Country        string `json:"country"`
 	UploadBWMbps   int    `json:"uploadBWMbps"`
@@ -21,8 +21,7 @@ type Topology struct {
 }
 ```
 
-There are also two important things exported from the package.
+There are also important things exported from the package.
 - The function `simlab.GetTopology` which loads a topology from a file path.
-- The global variable `simlab.Lantencies` which contains the latencies across countries.
-
-The latencies are hard-coded in `country_latencies.json`.
+- The global variable `simlab.Lantencies` which contains the latencies across countries, which are hard-coded in `country_latencies.json`.
+- The global variable `simlab.Weights` which contains the country distribution among nodes, which is hard-coded in `weights.json`.

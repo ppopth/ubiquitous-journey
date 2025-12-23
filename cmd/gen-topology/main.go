@@ -10,9 +10,6 @@ import (
 	"github.com/ethp2p/simlab"
 )
 
-//go:embed weights.json
-var weightsBytes []byte
-
 func main() {
 	numNodes := flag.Int("n", 10, "number of nodes")
 	degree := flag.Int("d", 4, "degree of the graph (connections per node)")
@@ -23,12 +20,7 @@ func main() {
 		panic(fmt.Sprintf("numNodes <= 0 (%d)", *numNodes))
 	}
 
-	var weights map[string]int
-	if err := json.Unmarshal(weightsBytes, &weights); err != nil {
-		panic("invalid weights")
-	}
-
-	t := simlab.GenerateRandomTopology(*numNodes, *degree, weights, *superNodeFraction)
+	t := simlab.GenerateRandomTopology(*numNodes, *degree, *superNodeFraction)
 
 	data, err := json.Marshal(t)
 	if err != nil {

@@ -66,13 +66,13 @@ func (cs *countrySelector) randCountry() string {
 }
 
 // GenerateRandomTopology creates a topology with the specified number of nodes and degree
-func GenerateRandomTopology(numNodes, degree int, weights map[string]int, superNodeFraction float64) Topology {
+func GenerateRandomTopology(numNodes, degree int, superNodeFraction float64) Topology {
 	t := Topology{
 		Nodes: make([]Node, numNodes),
 		Edges: make(map[int][]int),
 	}
 
-	selector := newCountrySelector(weights)
+	selector := newCountrySelector(Weights)
 
 	for i := range numNodes {
 		uploadBW, downloadBW := getNodeBandwidth(i, superNodeFraction)
